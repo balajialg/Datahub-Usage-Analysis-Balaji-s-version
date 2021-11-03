@@ -1,0 +1,27 @@
+library(lubridate)
+library(ggplot2)
+library(dplyr)
+
+user_data  <- read.csv("user-activities.csv")
+head(user_data)
+length(unique(user_data$hub))
+user_data$action
+
+#Calculating Daily Active Users
+user_data$date <- date(user_data$timestamp)
+dau <- user_data %>% group_by(date) %>% mutate(daily_users = n_distinct(user))
+dau$daily_users
+ggplot(dau, aes(x=date, y=daily_users)) + 
+  geom_bar(stat = "identity") +xlab("Date") +ylab("Daily Active Users") + ylim(000, 5000)
+
+
+#Caclulating Monthly Active Users
+length(unique(user_data$user))
+
+#Calculating user time spent in the hub
+action_count <- table(user_data$action)
+
+#Not having enough stop actions in correlation with start actions
+
+barplot(action_count, main="Server Start and Stop", horiz = TRUE, 
+        xlab="Count of Start and Stop")
