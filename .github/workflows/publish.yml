@@ -7,9 +7,8 @@ jobs:
   createPullRequest:
     runs-on: ubuntu-latest
     steps:
-      - uses: peter-evans/create-pull-request@v4
-        with:
-          commit-message: Incident Report
-          title: Incident Report
-          body: Credit new Incident Report
-          branch: incident-report
+      - uses: actions/checkout@v3
+      
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
