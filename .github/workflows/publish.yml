@@ -1,0 +1,18 @@
+name: Open PR when a github issue with the subject "incident report" is opened
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a Github Issue
+        run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Incident Report
+          title: Incident Report
+          body: Credit new Incident Report
+          branch: incident-report
