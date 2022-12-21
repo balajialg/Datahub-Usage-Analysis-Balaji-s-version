@@ -17,7 +17,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: New Incident report
-          committer: balajialg@gmail.com
+          committer: Balaji <balajialg@gmail.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
           branch: balaji-githubaction-branch
