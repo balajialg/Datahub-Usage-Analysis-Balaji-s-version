@@ -17,12 +17,12 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           commit-message: New Incident report
-          committer: Balaji <balajialg@gmail.com>
+          committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
           branch: balaji-githubaction-branch
           delete-branch: true
-          title: 'Incident report automatically created for a github issue'
+          title: 'Incident report PR automatically created for a github issue'
           body: |
             Incident report template
             - Updated with *today's* date and template information
@@ -38,4 +38,4 @@ jobs:
             owners
             maintainers
           milestone: 1
-          draft: false 
+          draft: false
