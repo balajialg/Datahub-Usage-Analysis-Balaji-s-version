@@ -43,7 +43,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        - <!-- Remove @berkeley.edu as part of the shared usernames and send them to ds-infrastructure@lists.berkeley.edu -->
+        - Remove @berkeley.edu as part of the shared usernames and send them to ds-infrastructure@lists.berkeley.edu
   - type: textarea
     attributes:
       label: End Date
