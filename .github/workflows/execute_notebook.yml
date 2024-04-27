@@ -1,5 +1,3 @@
-name: Test Notebooks
-
 on:
   push:
     paths:
@@ -20,11 +18,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install nbconvert
-
-    - name: Install nbformat
-      run: |
-        pip install nbformat
+        pip install nbconvert nbformat
 
     - name: Execute notebooks
       run: |
@@ -32,16 +26,12 @@ jobs:
           jupyter nbconvert --ExecutePreprocessor.allow_errors=True --ExecutePreprocessor.timeout=600 --to notebook --execute "$file"
         done
 
-    - name: Import nbformat
-      run: |
-        python -c "import nbformat; print(nbformat.__version__)"
-
     - name: Check for errors
       run: |
         for file in $(find . -type f -name "*.ipynb"); do
-          python -c "
+          echo "Checking $file"
+          python - <<EOF
         import nbformat
-        
         with open('$file', 'r') as f:
             nb = nbformat.read(f, as_version=4)
         
@@ -52,4 +42,5 @@ jobs:
                         print(f'Error in notebook {file}:')
                         print(output.traceback)
                         exit(1)
-        done
+        EOF
+                done
