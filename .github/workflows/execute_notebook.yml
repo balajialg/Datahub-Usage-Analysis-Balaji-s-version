@@ -22,9 +22,12 @@ jobs:
 
     - name: Execute notebooks
       run: |
+        # Find all .ipynb files and loop over them
         for file in $(find . -type f -name "*.ipynb"); do
+          # Execute nbconvert for each notebook file
           jupyter nbconvert --ExecutePreprocessor.allow_errors=True --ExecutePreprocessor.timeout=600 --to notebook --execute "$file"
         done
+
 
     - name: Check for errors
       run: |
