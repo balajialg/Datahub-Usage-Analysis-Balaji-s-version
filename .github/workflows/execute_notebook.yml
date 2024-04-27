@@ -1,3 +1,5 @@
+name: Execute and Check Notebooks
+
 on:
   push:
     paths:
@@ -28,12 +30,11 @@ jobs:
           jupyter nbconvert --ExecutePreprocessor.allow_errors=True --ExecutePreprocessor.timeout=600 --to notebook --execute "$file"
         done
 
-
     - name: Check for errors
       run: |
         for file in $(find . -type f -name "*.ipynb"); do
           echo "Checking $file"
-          python - <<EOF
+          python -c "
         import nbformat
         with open('$file', 'r') as f:
             nb = nbformat.read(f, as_version=4)
@@ -45,5 +46,5 @@ jobs:
                         print(f'Error in notebook {file}:')
                         print(output.traceback)
                         exit(1)
-        EOF
-                done
+        "
+        done
