@@ -1,0 +1,55 @@
+name: Test Notebooks
+
+on:
+  push:
+    paths:
+      - '**.ipynb'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install nbconvert
+
+    - name: Install nbformat
+      run: |
+        pip install nbformat
+
+    - name: Execute notebooks
+      run: |
+        for file in $(find . -type f -name "*.ipynb"); do
+          jupyter nbconvert --ExecutePreprocessor.allow_errors=True --ExecutePreprocessor.timeout=600 --to notebook --execute "$file"
+        done
+
+    - name: Import nbformat
+      run: |
+        python -c "import nbformat; print(nbformat.__version__)"
+
+    - name: Check for errors
+      run: |
+        for file in $(find . -type f -name "*.ipynb"); do
+          python -c "
+        import nbformat
+        
+        with open('$file', 'r') as f:
+            nb = nbformat.read(f, as_version=4)
+        
+        for cell in nb.cells:
+            if cell.cell_type == 'code' and 'outputs' in cell:
+                for output in cell.outputs:
+                    if output.output_type == 'error':
+                        print(f'Error in notebook {file}:')
+                        print(output.traceback)
+                        exit(1)
+        done
