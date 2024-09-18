@@ -1,5 +1,5 @@
-name: Request Elevated Privileges for Course Staff
-description: Enable course staff to manage student servers
+name: Setup Shared/Shared-readwrite directories
+description: To store large datasets that can be read by student notebooks
 labels: "support"
 assignees:
 - balajialg
