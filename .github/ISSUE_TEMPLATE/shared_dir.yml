@@ -85,8 +85,16 @@ body:
         <!-- Any specific date(s) (MM/DD) to prioritize this request at our end? -->
     validations:
       required: true
-  - type: markdown
+  - type: textarea
     attributes:
+      label: Reproducible test cases
+      description: Please upload a reproducible test notebook (ipynb, rmd) or a code block for this request.
       value: |
-        ### Upload your notebook file here:
-        Drag and drop the `.ipynb` file or manually upload it as an attachment.
+        <!-- 1. Launch server on publichealth-staging
+2. If R console indicates an R mismatch, click the little red power button on the upper right in R studio to stop the current R session and start another.
+3. From the terminal git clone https://github.com/ph142-ucb/ph142-fa24.git
+4. From R studio open the following .Rmd: ph142-fa24/lec/Day-11_Intro-probability/Ch09_Intro-probability.Rmd
+5. Confirm patchwork 1.1.1 using packageVersion('patchwork') in the R console. If you don't see 1.1.1, restart your server.
+6. From the Session menu choose "Restart R and Run All Chunks" you should observe the following error at the bottom of the output in the R console: -->
+    validations:
+      required: true
