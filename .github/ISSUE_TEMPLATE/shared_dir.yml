@@ -90,11 +90,3 @@ body:
       value: |
         ### Upload your notebook file here:
         Drag and drop the `.ipynb` file or manually upload it as an attachment.
-  - type: file-upload
-    id: notebook_file
-    attributes:
-      label: "Upload Jupyter Notebook"
-      description: "Attach the .ipynb file here."
-      accept: ".ipynb"
-    validations:
-      required: true
