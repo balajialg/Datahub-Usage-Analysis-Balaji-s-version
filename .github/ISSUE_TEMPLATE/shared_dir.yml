@@ -85,3 +85,8 @@ body:
         <!-- Any specific date(s) (MM/DD) to prioritize this request at our end? -->
     validations:
       required: true
+  - type: markdown
+    attributes:
+      value: |
+        ### Upload your notebook file here:
+        Drag and drop the `.ipynb` file or manually upload it as an attachment.
